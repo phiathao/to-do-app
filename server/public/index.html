@@ -12,15 +12,53 @@
 </head>
 <body>
     <h1>TO DO LIST</h1>
-    <div id="addToDo">
+    <div id="addToDo" class="container">
         <h2>Add Task</h2>
         <div class="row">
-            <input class="col-sm-8" type="text" id="taskIn" placeholder="Task">
-            <div class="col-sm-2">
-                
+            <input class="col-sm-6" type="text" id="taskIn" placeholder="Task">
+            <div class="col-sm-3 centerCheck">
+                <span><input type="checkbox" name="important" id="importantIn"> Important</span>
             </div>
-            <button class="col-sm-2" type="button" id="addButton">Add</button>
+            <button class="col-sm-3" type="button" id="addButton">Add</button>
         </div>
+    </div>
+    <div class="container">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Task</th>
+                    <th scope="col">Important</th>
+                    <th scope="col">Finish</th>
+                    <th scope="col">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Do the dish</td>
+                    <td>No</td>
+                    <td><button>Finish</button></td>
+                    <td><button>Remove</button></td>
+                </tr>
+                <tr>
+                    <td>Wipe the window</td>
+                    <td>No</td>
+                    <td><button>Finish</button></td>
+                    <td><button>Remove</button></td>
+                </tr>
+                <tr>
+                    <td>cook some food</td>
+                    <td>No</td>
+                    <td><button>Finish</button></td>
+                    <td><button>Remove</button></td>
+                </tr>
+                <tr>
+                    <td>Buy some Onion</td>
+                    <td>Yes</td>
+                    <td><button>Finish</button></td>
+                    <td><button>Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
