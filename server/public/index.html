@@ -12,14 +12,14 @@
 </head>
 <body>
     <h1>TO DO LIST</h1>
-    <div id="addToDo" class="container">
+    <div class="container">
         <h2>Add Task</h2>
-        <div class="row">
+        <div class="row" id="addToDo">
             <input class="col-sm-6" type="text" id="taskIn" placeholder="Task">
             <div class="col-sm-3 centerCheck">
                 <span><input type="checkbox" name="important" id="importantIn"> Important</span>
             </div>
-            <button class="col-sm-3" type="button" id="addButton">Add</button>
+            <button class="col-sm-3" type="button" id="addTaskButton">Add</button>
         </div>
     </div>
     <div class="container">
@@ -32,7 +32,7 @@
                     <th scope="col">Remove</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="taskList">
                 <tr>
                     <td>Do the dish</td>
                     <td>No</td>

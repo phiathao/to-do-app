@@ -26,6 +26,19 @@ pool.on('error', (error)=>{
 });
 // end db stuff
 
+//get
+app.get('/tasks', (req,res)=>{
+    console.log('in Get');
+    let queryString = `SELECT * FROM "todolist" ORDER BY "important" DESC;`;
+    pool.query(queryString).then((result) => {
+        // console.log(result.rows);
+        res.send(result.rows);
+    }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+    });
+});
+
 //static
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('server/public'));
