@@ -42,6 +42,22 @@ function displayTaskFn(tasks){
     $('#taskList').empty();
     for (const toDo of tasks){
         // console.log(toDo);
-        
+        let important;
+        switch (toDo.important){
+            case false:
+                important = 'No';
+                break;
+            case true:
+                important = 'Yes';
+        }
+
+        $('#taskList').append(`
+        <tr>
+            <td>${toDo.task}</td>
+            <td>${important}</td>
+            <td><button>Finish</button></td>
+            <td><button>Remove</button></td>
+        </tr>
+    `)
     }
 }

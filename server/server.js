@@ -29,9 +29,9 @@ pool.on('error', (error)=>{
 //get
 app.get('/tasks', (req,res)=>{
     console.log('in Get');
-    let queryString = `SELECT * FROM "todolist" ORDER BY "important" DESC;`;
+    let queryString = `SELECT * FROM "todolist" ORDER BY "complete" ASC, "important" DESC;`;
     pool.query(queryString).then((result) => {
-        // console.log(result.rows);
+        console.log(result.rows);
         res.send(result.rows);
     }).catch((err) => {
         console.log(err);
