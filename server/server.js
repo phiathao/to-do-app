@@ -12,6 +12,6 @@ app.use(express.static('server/public'));
 
 
 //starting server
-app.listen(port, ()=>{
+app.listen(PORT, ()=>{
     console.log('listing on port', PORT);
 });
