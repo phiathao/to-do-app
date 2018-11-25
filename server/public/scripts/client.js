@@ -21,7 +21,16 @@ function addTaskFn(){
         task: task,
         important: important
     }
-    // console.log(objectToSend);
+    console.log(objectToSend);
+    $.ajax({
+        method: "POST",
+        url: "/tasks",
+        data: objectToSend
+    }).then((response)=>{
+        getTaskFn();
+    }).catch((err)=>{
+        console.log(err);
+    })
 }
 
 function getTaskFn(){
