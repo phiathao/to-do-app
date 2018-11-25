@@ -50,14 +50,22 @@ function displayTaskFn(tasks){
             case true:
                 important = 'Yes';
         }
-
-        $('#taskList').append(`
-        <tr>
-            <td>${toDo.task}</td>
-            <td>${important}</td>
-            <td><button>Finish</button></td>
-            <td><button>Remove</button></td>
-        </tr>
-    `)
+        let taskTableRow = $(`
+            <tr>
+                <td>${toDo.task}</td>
+                <td>${important}</td>
+                <td><button class="finishButton">Finish</button></td>
+                <td><button class="removeButton">Remove</button></td>
+            </tr>
+        `);
+        if (toDo.complete === true){    // if task complete dont show the button
+            taskTableRow.find('.finishButton').addClass('hide'); //hide the button
+            taskTableRow.find('.finishButton').parent().text('Yes'); // insert Yes into it
+            taskTableRow.addClass('table-success'); // change color
+        }
+        if (toDo.important === true && toDo.complete === false){ // different color if important && make sure to not assign two class
+        }
+        taskTableRow.data('object', toDo);
+        $('#taskList').append(taskTableRow);
     }
 }
