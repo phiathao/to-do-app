@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const tasksRouter = express.Router();
-const pool = require ('./pool.db')
+const pool = require ('../modules/pool.db')
 
 //get
 tasksRouter.get('/', (req,res)=>{
@@ -28,12 +28,25 @@ tasksRouter.post('/', (req,res)=>{
         res.sendStatus(500);
     });
 })
-//put
-tasksRouter.put('/:id', (req,res)=>{
+//put to complete
+tasksRouter.put('/c/:id', (req,res)=>{
     // console.log('in Put');
     let taskId = req.params.id;
     // console.log(taskId);
     let queryString = `UPDATE "todolist" SET "complete" = 'true' WHERE "id" = $1;`;
+    pool.query(queryString, [taskId]).then((result)=>{
+        res.sendStatus(201);
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(500);
+    });
+})
+//put to not complete
+tasksRouter.put('/n/:id', (req,res)=>{
+    // console.log('in Put');
+    let taskId = req.params.id;
+    // console.log(taskId);
+    let queryString = `UPDATE "todolist" SET "complete" = 'false' WHERE "id" = $1;`;
     pool.query(queryString, [taskId]).then((result)=>{
         res.sendStatus(201);
     }).catch((err)=>{
