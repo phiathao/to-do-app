@@ -58,6 +58,20 @@ app.post('/tasks', (req,res)=>{
     res.send('hiii');
 })
 
+app.put('/tasks/:id', (req,res)=>{
+    // console.log('in Put');
+    let taskId = req.params.id;
+    // console.log(taskId);
+    let queryString = `UPDATE "todolist" SET "complete" = 'true' WHERE "id" = $1;`;
+    pool.query(queryString, [taskId]).then((result)=>{
+        res.sendStatus(201);
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(500);
+    });
+    res.send('bye');
+})
+
 //starting server
 app.listen(PORT, ()=>{
     console.log('listing on port', PORT);

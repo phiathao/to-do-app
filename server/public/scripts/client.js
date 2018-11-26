@@ -10,6 +10,7 @@ function readyFn(){
 
 function clickListenerFn(){
     $('#addTaskButton').on('click', addTaskFn);
+    $('#taskList').on('click', '.finishButton', finishFn);
 }
 
 function addTaskFn(){
@@ -49,7 +50,7 @@ function getTaskFn(){
 function displayTaskFn(tasks){
     // console.log('in display');
     $('#taskList').empty();
-    for (const toDo of tasks){
+    for (const toDo of tasks){ // going through array of tasks/response
         // console.log(toDo);
         let important;
         switch (toDo.important){
@@ -63,8 +64,8 @@ function displayTaskFn(tasks){
             <tr>
                 <td>${toDo.task}</td>
                 <td>${important}</td>
-                <td><button class="finishButton">Finish</button></td>
-                <td><button class="removeButton">Remove</button></td>
+                <td><button class="finishButton btn btn-outline-success">Finish</button></td>
+                <td><button class="removeButton btn btn-outline-danger">Remove</button></td>
             </tr>
         `);
         if (toDo.complete === true){    // if task complete dont show the button
@@ -76,5 +77,19 @@ function displayTaskFn(tasks){
         }
         taskTableRow.data('object', toDo);
         $('#taskList').append(taskTableRow);
-    }
+    } // end of loop
+}
+
+function finishFn(){
+    let thisTask = $(this).closest('tr').data('object');
+    console.log(thisTask, thisTask.id);
+    $.ajax({
+        method: "PUT",
+        url: `/tasks/${thisTask.id}`
+    }).then((response)=>{
+        console.log(response);
+        getTaskFn();
+    }).catch((err)=>{
+        console.log(err);
+    })
 }
