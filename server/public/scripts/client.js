@@ -11,7 +11,7 @@ function readyFn() {
 function clickListenerFn() {
     $('#addTaskButton').on('click', addTaskFn);
     // $('#taskList').on('click', '.finishButton', finishFn);
-    $('#taskList').on('change', `#finishCheckBox[type='checkbox']`, completeCheckFn)
+    $('#taskList').on('click', `.checkButton`, completeCheckFn)
     $('#taskList').on('click', '.removeButton', removeFn);
 }
 
@@ -38,9 +38,10 @@ function addTaskFn() {
 
 function completeCheckFn() {
     // console.log(this);
-    let thisTask = $(this).closest('tr').data('object');
-    if ($(this).is(':checked')) {
-        // console.log('this is check')
+    let thisTask = $(this).closest('.card').data('object');
+    console.log(thisTask)
+    if ($(this).hasClass('notDone')) {
+        console.log('this is check')
         $.ajax({
             method: "PUT",
             url: `/tasks/c/${thisTask.id}`
@@ -51,7 +52,7 @@ function completeCheckFn() {
             console.log(err);
         })
     } else {
-        // console.log('this is uncheck')
+        console.log('this is uncheck')
         $.ajax({
             method: "PUT",
             url: `/tasks/n/${thisTask.id}`
@@ -82,33 +83,43 @@ function displayTaskFn(tasks) {
     $('#taskList').empty();
     for (const toDo of tasks) { // going through array of tasks/response
         // console.log(toDo);
-        let important;
-        switch (toDo.important) {
-            case false:
-                important = 'No';
-                break;
-            case true:
-                important = 'Yes';
-        }
-        let taskTableRow = $(`
-            <tr>
-                <td>${toDo.task}</td>
-                <td>${important}</td>
-                <td><input type="checkbox" id="finishCheckBox">Complete</td>
-                <td><button class="removeButton btn btn-outline-danger">Remove</button></td>
-            </tr>
+        // let important;
+        // switch (toDo.important) {
+        //     case false:
+        //         important = 'No';
+        //         break;
+        //     case true:
+        //         important = 'Yes';
+        // }
+        let taskCard = $(`
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${toDo.task}</h5>
+                    <div class="card-text">
+                        <button class="checkButton">Complete</button>
+                        <button class="removeButton btn btn-danger">Remove</button>
+                    </div>
+                </div
+            </div>
         `);
         if (toDo.complete === true){    // if task complete dont show the button
-            // taskTableRow.find('.finishButton').addClass('hide'); //hide the button
-            // taskTableRow.find('.finishButton').parent().text('Completed'); // insert Yes into it
-            taskTableRow.addClass('table-success'); // change color
-            taskTableRow.find('input').attr('checked', true); // make sure that the box is checked off when being append to DOM
+            // taskCard.find('.finishButton').addClass('hide'); //hide the button
+            // taskCard.find('.finishButton').parent().text('Completed'); // insert Yes into it
+            taskCard.addClass('p-3 mb-2 bg-info text-white'); // change color
+            taskCard.find('.checkButton').data('check', 1); // make sure that the box is checked off when being append to DOM
+            taskCard.find('.checkButton').addClass('btn btn-success done');
+            taskCard.find('.checkButton').text('Completed');
         }
         if (toDo.important === true && toDo.complete === false) { // different color if important && make sure to not assign two class
-            taskTableRow.addClass('table-primary'); // change color
+            taskCard.addClass('p-3 mb-2 bg-primary text-white'); // change color
+            taskCard.find('.checkButton').addClass('btn btn-secondary notDone');
         }
-        taskTableRow.data('object', toDo);
-        $('#taskList').append(taskTableRow);
+        if (toDo.important === false && toDo.complete === false){
+            taskCard.addClass('p-3 mb-2 bg-light text-dark'); // change color
+            taskCard.find('.checkButton').addClass('btn btn-secondary notDone');
+        }
+        taskCard.data('object', toDo);
+        $('#taskList').append(taskCard);
     } // end of loop
 }
 
@@ -129,7 +140,7 @@ function displayTaskFn(tasks) {
 function removeFn() {
     if (confirm('Are you sure you want to remove this task?')) {
         // console.log('REMOVING THIS!')
-        let thisTask = $(this).closest('tr').data('object');
+        let thisTask = $(this).closest('.card').data('object');
         console.log(thisTask, thisTask.id);
         $.ajax({
             method: "DELETE",

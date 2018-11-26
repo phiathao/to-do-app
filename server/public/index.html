@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,22 +11,23 @@
     <script src="scripts/client.js"></script>
     <title>To Do App</title>
 </head>
+
 <body>
     <div class="jumbotron">
-    <h1>TO DO APP</h1>
-    <div class="container">
-        <h2>Add Task</h2>
-        <div class="row" id="addToDo">
-            <input class="col-sm-6" type="text" id="taskIn" placeholder="Task">
-            <div class="col-sm-3 centerCheck">
-                <span><input type="checkbox" name="important" id="importantIn"> Important</span>
+        <h1>TO DO APP</h1>
+        <div class="container">
+            <h2>Add Task</h2>
+            <div class="row" id="addToDo">
+                <input class="col-sm-6" type="text" id="taskIn" placeholder="Task">
+                <div class="col-sm-3 centerCheck">
+                    <span><input type="checkbox" name="important" id="importantIn"> Important</span>
+                </div>
+                <button class="col-sm-3 btn btn-primary" type="button" id="addTaskButton">Add</button>
             </div>
-            <button class="col-sm-3 btn btn-primary" type="button" id="addTaskButton">Add</button>
         </div>
     </div>
-    </div>
-    <div class="container">
-        <table class="table table-sm">
+    <div class="container" id="taskList">
+        <!-- <table class="table table-sm">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Task</th>
@@ -33,34 +35,50 @@
                     <th scope="col">Progress</th>
                     <th scope="col">Remove</th>
                 </tr>
-            </thead>
-            <tbody id="taskList">
-                <tr>
-                    <td>Do the dish</td>
-                    <td>No</td>
-                    <td><button>Finish</button></td>
-                    <td><button>Remove</button></td>
-                </tr>
-                <tr>
-                    <td>Wipe the window</td>
-                    <td>No</td>
-                    <td><button>Finish</button></td>
-                    <td><button>Remove</button></td>
-                </tr>
-                <tr>
-                    <td>cook some food</td>
-                    <td>No</td>
-                    <td><button>Finish</button></td>
-                    <td><button>Remove</button></td>
-                </tr>
-                <tr>
-                    <td>Buy some Onion</td>
-                    <td>Yes</td>
-                    <td><button>Finish</button></td>
-                    <td><button>Remove</button></td>
-                </tr>
-            </tbody>
-        </table>
+            </thead> -->
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+        <!-- <tbody id="taskList">
+            <tr>
+                <td>Do the dish</td>
+                <td>No</td>
+                <td><button>Finish</button></td>
+                <td><button>Remove</button></td>
+            </tr>
+            <tr>
+                <td>Wipe the window</td>
+                <td>No</td>
+                <td><button>Finish</button></td>
+                <td><button>Remove</button></td>
+            </tr>
+            <tr>
+                <td>cook some food</td>
+                <td>No</td>
+                <td><button>Finish</button></td>
+                <td><button>Remove</button></td>
+            </tr>
+            <tr>
+                <td>Buy some Onion</td>
+                <td>Yes</td>
+                <td><button>Finish</button></td>
+                <td><button>Remove</button></td>
+            </tr>
+        </tbody>
+        </table> -->
     </div>
 </body>
+
 </html>
