@@ -6,7 +6,7 @@ const pool = require ('../modules/pool.db')
 //get
 tasksRouter.get('/', (req,res)=>{
     // console.log('in Get');
-    let queryString = `SELECT * FROM "todolist" ORDER BY "complete" ASC, "important" DESC;`;
+    let queryString = `SELECT * FROM "todolist" ORDER BY "complete" ASC, "important" DESC;`; // complete are set to be bottom, important on top
     pool.query(queryString).then((result) => {
         // console.log(result.rows);
         res.send(result.rows);

@@ -24,7 +24,7 @@ function addTaskFn() {
         task: task,
         important: important
     }
-    console.log(objectToSend);
+    // console.log(objectToSend);
     $.ajax({
         method: "POST",
         url: "/tasks",
@@ -45,7 +45,7 @@ function completeCheckFn() {
             method: "PUT",
             url: `/tasks/c/${thisTask.id}`
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             getTaskFn();
         }).catch((err) => {
             console.log(err);
@@ -56,7 +56,7 @@ function completeCheckFn() {
             method: "PUT",
             url: `/tasks/n/${thisTask.id}`
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             getTaskFn();
         }).catch((err) => {
             console.log(err);
@@ -102,7 +102,7 @@ function displayTaskFn(tasks) {
             // taskTableRow.find('.finishButton').addClass('hide'); //hide the button
             // taskTableRow.find('.finishButton').parent().text('Completed'); // insert Yes into it
             taskTableRow.addClass('table-success'); // change color
-            taskTableRow.find('input').attr('checked', true);
+            taskTableRow.find('input').attr('checked', true); // make sure that the box is checked off when being append to DOM
         }
         if (toDo.important === true && toDo.complete === false) { // different color if important && make sure to not assign two class
             taskTableRow.addClass('table-primary'); // change color
@@ -135,7 +135,7 @@ function removeFn() {
             method: "DELETE",
             url: `/tasks/${thisTask.id}`
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             getTaskFn();
         }).catch((err) => {
             console.log(err);
