@@ -11,6 +11,7 @@ function readyFn(){
 function clickListenerFn(){
     $('#addTaskButton').on('click', addTaskFn);
     $('#taskList').on('click', '.finishButton', finishFn);
+    $('#taskList').on('click', '.removeButton', removeFn);
 }
 
 function addTaskFn(){
@@ -64,13 +65,13 @@ function displayTaskFn(tasks){
             <tr>
                 <td>${toDo.task}</td>
                 <td>${important}</td>
-                <td><button class="finishButton btn btn-outline-success">Finish</button></td>
+                <td><button class="finishButton btn btn-outline-success">Complete</button></td>
                 <td><button class="removeButton btn btn-outline-danger">Remove</button></td>
             </tr>
         `);
         if (toDo.complete === true){    // if task complete dont show the button
             taskTableRow.find('.finishButton').addClass('hide'); //hide the button
-            taskTableRow.find('.finishButton').parent().text('Yes'); // insert Yes into it
+            taskTableRow.find('.finishButton').parent().text('Completed'); // insert Yes into it
             taskTableRow.addClass('table-success'); // change color
         }
         if (toDo.important === true && toDo.complete === false){ // different color if important && make sure to not assign two class
@@ -92,4 +93,23 @@ function finishFn(){
     }).catch((err)=>{
         console.log(err);
     })
+}
+
+function removeFn(){
+    if(confirm('Are you sure you want to remove this task?')){
+        // console.log('REMOVING THIS!')
+        let thisTask = $(this).closest('tr').data('object');
+        console.log(thisTask, thisTask.id);
+        $.ajax({
+            method: "DELETE",
+            url: `/tasks/${thisTask.id}`
+        }).then((response)=>{
+            console.log(response);
+            getTaskFn();
+        }).catch((err)=>{
+            console.log(err);
+        })
+    } else {
+        //do nothing
+    }
 }

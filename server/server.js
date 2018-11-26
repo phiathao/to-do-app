@@ -55,7 +55,6 @@ app.post('/tasks', (req,res)=>{
         console.log(err);
         res.sendStatus(500);
     });
-    res.send('hiii');
 })
 
 app.put('/tasks/:id', (req,res)=>{
@@ -69,7 +68,19 @@ app.put('/tasks/:id', (req,res)=>{
         console.log(err);
         res.sendStatus(500);
     });
-    res.send('bye');
+})
+
+app.delete('/tasks/:id', (req,res)=>{
+    // console.log('in delete');
+    let taskId = req.params.id;
+    // console.log(taskId);
+    let queryString = `DELETE FROM "todolist" WHERE "id" = $1;`;
+    pool.query(queryString, [taskId]).then((result)=>{
+        res.sendStatus(201);
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(500);
+    });
 })
 
 //starting server
