@@ -5,6 +5,7 @@ CREATE TABLE "todolist" (
 	"id" SERIAL PRIMARY KEY
 );
 
+--assume any task going be added will be like this because it is not complete, and will be default to false/0
 INSERT INTO "todolist" ("task", "important") VALUES('Wash the dish', '0'), 
 ('Wipe the window', '0'),
 ('Take out the trash', '0'),
