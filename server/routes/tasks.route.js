@@ -5,10 +5,8 @@ const pool = require ('../modules/pool.db')
 
 //get
 tasksRouter.get('/', (req,res)=>{
-    // console.log('in Get');
     let queryString = `SELECT * FROM "todolist" ORDER BY "complete" ASC, "important" DESC;`; // complete are set to be bottom, important on top
     pool.query(queryString).then((result) => {
-        // console.log(result.rows);
         res.send(result.rows);
     }).catch((err) => {
         console.log(err);
@@ -17,9 +15,7 @@ tasksRouter.get('/', (req,res)=>{
 });
 //post
 tasksRouter.post('/', (req,res)=>{
-    // console.log('in POST');
     let task = req.body;
-    // console.log(task);
     let queryString = `INSERT INTO "todolist" ("task", "important") VALUES ($1, $2);`;
     pool.query(queryString, [task.task, task.important]).then((result)=>{
         res.sendStatus(201);
@@ -30,9 +26,7 @@ tasksRouter.post('/', (req,res)=>{
 })
 //put to complete
 tasksRouter.put('/c/:id', (req,res)=>{
-    // console.log('in Put');
     let taskId = req.params.id;
-    // console.log(taskId);
     let queryString = `UPDATE "todolist" SET "complete" = 'true' WHERE "id" = $1;`;
     pool.query(queryString, [taskId]).then((result)=>{
         res.sendStatus(201);
@@ -43,9 +37,7 @@ tasksRouter.put('/c/:id', (req,res)=>{
 })
 //put to not complete
 tasksRouter.put('/n/:id', (req,res)=>{
-    // console.log('in Put');
     let taskId = req.params.id;
-    // console.log(taskId);
     let queryString = `UPDATE "todolist" SET "complete" = 'false' WHERE "id" = $1;`;
     pool.query(queryString, [taskId]).then((result)=>{
         res.sendStatus(201);
@@ -56,9 +48,7 @@ tasksRouter.put('/n/:id', (req,res)=>{
 })
 //delete
 tasksRouter.delete('/:id', (req,res)=>{
-    // console.log('in delete');
     let taskId = req.params.id;
-    // console.log(taskId);
     let queryString = `DELETE FROM "todolist" WHERE "id" = $1;`;
     pool.query(queryString, [taskId]).then((result)=>{
         res.sendStatus(201);
