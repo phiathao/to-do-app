@@ -42,6 +42,7 @@ Some of the software require before attempting to start this application
 
 Be sure to create a new database through Postico. Use the name `to-do-app`. You will need to use this name in your database connection configuration on your server.
 
+Copy the code inside weekend-to-do-app.sql and run it inside postico to set up some of the database
 ### Database Structure
 
 Please include a `database.sql` text file in your repo that includes all of your `CREATE TABLE` queries. This is so we can re-create your database while testing your app.
@@ -53,7 +54,7 @@ Please include a `database.sql` text file in your repo that includes all of your
 - [x]  Cards
 - [x]  Jumbotron
 
-- [ ]  In whatever fashion you would like, create an 'are you sure: yes / no' option when deleting a task.
+- [x]  In whatever fashion you would like, create an 'are you sure: yes / no' option when deleting a task.
 
-- [ ]  Adjust the logic so that completed tasks are brought to the bottom of the page, where the remaining tasks left to complete are brought to the top of the list.
+- [x]  Adjust the logic so that completed tasks are brought to the bottom of the page, where the remaining tasks left to complete are brought to the top of the list.
 # todo-app-w3challenge
