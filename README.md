@@ -25,6 +25,7 @@ Some of the software require before attempting to start this application
 1. set up database in Postico name "to-do-app", postico host is name localhost, and port of 5432
 2. npm install
 3. npm start
+4. To see the app working go to http://localhost:5000/ on your browser
 
 
 **Here are the specific components for the Application:**
@@ -48,9 +49,9 @@ Please include a `database.sql` text file in your repo that includes all of your
 ## Next Steps
 
 - [x]  Add Bootstrap to the front end and style it up!
-- [ ]  Buttons
-- [ ]  Cards
-- [ ]  Jumbotron
+- [x]  Buttons
+- [x]  Cards
+- [x]  Jumbotron
 
 - [ ]  In whatever fashion you would like, create an 'are you sure: yes / no' option when deleting a task.
 
