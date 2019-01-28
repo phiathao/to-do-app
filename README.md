@@ -58,4 +58,3 @@ Please include a `database.sql` text file in your repo that includes all of your
 
 - [x]  Adjust the logic so that completed tasks are brought to the bottom of the page, where the remaining tasks left to complete are brought to the top of the list.
 - [ ]  Notification of task being added
-# todo-app-w3challenge
